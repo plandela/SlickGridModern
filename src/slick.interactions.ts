@@ -72,7 +72,12 @@ export function Draggable(options: DraggableOption) {
     const targetEvent: MouseEvent | Touch = (event as TouchEvent)?.touches?.[0] ?? event;
     const { target } = targetEvent;
 
-    if (!options.allowDragFrom || (options.allowDragFrom && (element.matches(options.allowDragFrom)) || (options.allowDragFromClosest && element.closest(options.allowDragFromClosest)))) {
+    if (
+      (options.allowDrag && options.allowDrag(element)) ||
+      !options.allowDragFrom ||
+      (options.allowDragFrom && element.matches(options.allowDragFrom) ||
+       options.allowDragFromClosest && element.closest(options.allowDragFromClosest))
+    ) {
       originaldd.dragHandle = element as HTMLElement;
       const winScrollPos = Utils.windowScrollPosition();
       startX = winScrollPos.left + targetEvent.clientX;

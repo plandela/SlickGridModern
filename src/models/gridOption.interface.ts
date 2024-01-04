@@ -331,6 +331,9 @@ export interface GridOption<C extends BaseColumn = BaseColumn> {
   /** Viewport max width in pixel */
   viewportMaxWidthPx?: number;
 
+  /** When defined, the function will determine whether dragging from specific element is allowed. If not specified, only `div.slick-cell` element can be dragged, or children of `div.slick-cell.dnd` or `div.slick-cell.cell-reorder` */
+  allowDrag?: (element: HTMLElement) => boolean;
+
   // --
   // deprecated options
 

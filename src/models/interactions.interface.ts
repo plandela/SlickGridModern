@@ -10,6 +10,9 @@ export interface DraggableOption {
   /** container DOM element, defaults to "document" */
   containerElement?: HTMLElement | Document;
 
+  /** when defined, the function will determine whether dragging from specific element is allowed. Is function is specified, `allowDragFrom` and `allowDragFromClosest` options are ignored. */
+  allowDrag?: (element: HTMLElement) => boolean;
+
   /** when defined, will allow dragging from a specific element by using the .matches() query selector. */
   allowDragFrom?: string;
 
